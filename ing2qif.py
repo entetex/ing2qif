@@ -29,7 +29,7 @@ class Entry(object):
 
 class CsvEntries(object):
     def __init__(self, filedescriptor):
-        self._entries = csv.DictReader(filedescriptor)
+        self._entries = csv.DictReader(filedescriptor, delimiter=';')
 
     def __iter__(self):
         return itertools.imap(Entry, self._entries)
@@ -122,7 +122,7 @@ class QifEntry(object):
         Decide what the memo field should be. Try to keep it as sane as possible. If unknown type, include all data.
         :return: the memo field.
         """
-        mutatie_soort = self._entry['MutatieSoort']
+        mutatie_soort = self._entry['Mutatiesoort']
         mededelingen = self._entry['Mededelingen']
         omschrijving = self._entry['Naam / Omschrijving']
 
